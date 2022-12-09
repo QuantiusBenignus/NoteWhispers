@@ -1,11 +1,9 @@
 
 
 # Voice Memos to Joplin Text Notes
-#### *Voice memos recorded from the microphone, transcribed to text and sent to the clipboard or converted to Joplin notes*
+#### *Voice memos recorded from the microphone, transcribed offline to text and sent to the clipboard or converted to Joplin notes*
 #### *Can also transcribe from an existing audio file and send text to clipboard or convert to Joplin notes*
 ---
-* Please, note that this command line utility for **Linux** is written for *zsh* but has been coded in a way that should allow it to run unmodified for users of *bash*. 
-> *DISCLAIMER: Setting up the environment for this to work requires a bit of attention and, quite likely for the novice user, reading about the Linux internals and making informed choices. Some of the proposed actions, if implemented, will alter how your system works internally (e.g. systemwide temporary file storage and memory management). The author neither takes credit nor assumes any responsibility for any outcome that may or may not result from interacting with the contents of this document.* 
 
 #### DESCRIPTION:  
 This Linux command-line utility is named **vm** for brevity and quick access from the command line (check your PATH for conflicts and rename accordingly if needed.)
@@ -37,6 +35,9 @@ As a CLI script relying on established Linux tools under the hood (*sox*, *curl*
 *  A working microphone (in GNOME one can set a keyboard shortcut to turn it ON and OFF )  
 
 ---
+* Please, note that this command line utility for **Linux** is written for *zsh* but has been coded in a way that should allow it to run unmodified for users of *bash*. 
+> *DISCLAIMER: Setting up the environment for this to work requires a bit of attention and, quite likely for the novice user, reading about the Linux internals and making informed choices. Some of the proposed actions, if implemented, will alter how your system works internally (e.g. systemwide temporary file storage and memory management). The author neither takes credit nor assumes any responsibility for any outcome that may or may not result from interacting with the contents of this document.*
+
 #### Preparing the Environment
 ##### Temporary directory and files
 *(NB. Everything in this section is based on the author's choice and opinion and may not fit the taste or the particular situation of everyone; please, adjust the script as you like. )*
