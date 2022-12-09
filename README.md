@@ -5,8 +5,10 @@
 #### *Can also transcribe from an existing audio file and send text to clipboard or convert to Joplin notes*
 ---
 
+> ![vmNewNote.png](vmNewNote.png)
+
 #### DESCRIPTION:  
-This Linux command-line utility is named **vm** for brevity and quick access from the command line (check your PATH for conflicts and rename accordingly if needed.)
+This Linux command-line utility (with optional GNOME integration) is named **vm** for brevity and quick access from the command line (check your PATH for conflicts and rename accordingly if needed.)
 
 **vm** utilizes previously unavailable, high-quality **offline** automatic speech recognition (ASR) technology ([Open AI's](https://openai.com/) recently open-sourced [Whisper ASR models](https://github.com/openai/whisper)) to convert user speech, such as voice memos captured from the microphone (or a pre-recorded audio file), into textual notes that are  automatically saved in the awesome, open-source, note-taking application [Joplin](https://joplinapp.org/).
 
@@ -194,8 +196,6 @@ If using X11 (instead of the restrictive Wayland), one can use the `--geometry` 
 
 > ![vmJoplin.png](vmJoplin.png)
 
-
-> ![vmNewNote.png](vmNewNote.png)
 
 Even with the default "tiny" model, the accuracy  (English language tested) is impressive and on a faster computer (not mine) it takes less than a second to transcribe a 30s audio clip with essentially no errors.
 As such, this command-line utility, combined with the strength of the now open-sourced [Whisper](https://github.com/openai/whisper) from Open AI (its [whisper.cpp](https://github.com/ggerganov/whisper.cpp) port, to be more precise), proves quite useful and practical, especially in the context of a note-taking app such as the versatile, customizable [Joplin](https://joplinapp.org/). Enjoy!
