@@ -31,7 +31,7 @@ As a CLI script relying on established Linux tools under the hood (*sox*, *curl*
    - `vm b` will transcribe to a Joplin note using the larger (more accurate but slower) "base" model
    - `vm c`  will transcribe with the default "tiny" model file but with output to the clipboard
    - `vm bc` or `vm cb` uses the "base" model file with output to the clipboard*
-   - any other 1st argument forces sox to treat it as an audio file and to try to convert it 
+   -  any other 1st argument forces sox to treat it as an audio file and to try to convert it 
    - `vm x XYZ` the existence of a 2nd argument  forces sox to treat it as an audio input file
    - `vm h|help|-h|--help` will print help instructions to the standard output
       * *(tested on Ubuntu 22.04 LTS under Gnome version 42.5, with the English language models )*
