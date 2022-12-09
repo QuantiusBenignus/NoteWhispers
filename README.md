@@ -10,7 +10,7 @@
 #### DESCRIPTION:  
 This Linux command-line utility (with optional GNOME integration) is named **vm** for brevity and quick access from the command line (check your PATH for conflicts and rename accordingly if needed.)
 
-**vm** utilizes previously unavailable, high-quality **offline** automatic speech recognition (ASR) technology ([Open AI's](https://openai.com/) recently open-sourced [Whisper ASR models](https://github.com/openai/whisper)) to convert user speech, such as voice memos captured from the microphone (or a pre-recorded audio file), into textual notes that are  automatically saved in the awesome, open-source, note-taking application [Joplin](https://joplinapp.org/).
+**vm** utilizes previously unavailable, high-quality **offline** automatic speech recognition (ASR) technology ([Open AI's](https://openai.com/) recently open-sourced [Whisper ASR models](https://github.com/openai/whisper)) to convert user speech, such as voice memos captured from the microphone (or a pre-recorded audio file), into textual notes that are  automatically saved in the awesome, **open-source, note-taking application** [Joplin](https://joplinapp.org/).
 
 As a CLI script relying on established Linux tools under the hood (*sox*, *curl*), **vm**'s feature set is exposed by a few command line arguments, but at its core it records a voice memo from the default audio input channel (microphone) or uses an audio file as the input,  transcribes it into text using [whisper.cpp](https://github.com/ggerganov/whisper.cpp) (a C/C++ port of Open AI's Whisper) and either: 
    - **sends it to the clipboard**, or
