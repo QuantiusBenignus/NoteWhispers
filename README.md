@@ -8,7 +8,7 @@ tags:
 
 # Voice Memos to Joplin Text Notes
 #### *Voice memos recorded from the microphone, transcribed to text and sent to the clipboard or converted to Joplin notes*
-#### *Voice memos transcribed to text from an existing file and sent to clipboard or converted to Joplin notes*
+#### *Can also be transcribed to text from an existing audio file and sent to clipboard or converted to Joplin notes*
 ---
 * Please, note that this command line utility for **Linux** is written for *zsh* but has been coded in a way that should allow it to run unmodified for users of *bash*. 
 > *DISCLAIMER: Setting up the environment for this to work requires a bit of attention and, quite likely for the novice user, reading about the Linux internals and making informed choices. Some of the proposed actions, if implemented, will alter how your system works internally (e.g. systemwide temporary file storage and memory management). The author neither takes credit nor assumes any responsibility for any outcome that may or may not result from interacting with the contents of this document.* 
