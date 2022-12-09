@@ -266,15 +266,15 @@ Exec=gnome-terminal --window-with-profile=YOURPROFILENAME --hide-menubar --geome
 ```
 With the above `gnome-terminal` desktop entry ( please, adjust profile and username), the  utility will be accessible from the system dock, after you add it to your "Favorites" (right mouse click brings up the shown context menu):
 
-> ![vmDockMic.png](vmDockMic-2.png)
+> ![vmDockMic.png](vmDockMic.png)
 The desktop entry is set so that just clicking on the dock icon with the left mouse button will open the terminal and wait for the **vm** command, while invoking one of the context menu commands will immediatlely start recording and will close the window when finished transcribing.
 
 If using X11 (instead of the restrictive Wayland), one can use the `--geometry` command line argument to position the small terminal window  in front of a dead space in the Joplin window and set it to stay on top (screenshots):
 
-> ![vmJoplin.png](vmJoplin-2.png)
+> ![vmJoplin.png](vmJoplin.png)
 
 
-> ![vmNewNote.png](vmNewNote-2.png)
+> ![vmNewNote.png](vmNewNote.png)
 
 Even with the default "tiny" model, the accuracy  (English language tested) is impressive and on a faster computer (not mine) it takes less than a second to transcribe a 30s audio clip with essentially no errors.
 As such, this command-line utility, combined with the strength of the now open-sourced [Whisper](https://github.com/openai/whisper) from Open AI (its [whisper.cpp](https://github.com/ggerganov/whisper.cpp) port, to be more precise), proves quite useful and practical, especially in the context of a note-taking app such as the versatile, customizable [Joplin](https://joplinapp.org/). Enjoy!
