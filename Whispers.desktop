@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=Whispers
+Comment=For use with the vm CLI utility
+Exec=gnome-terminal --window-with-profile=YOURPROFILENAME --hide-menubar --geometry=80x10+180+850 --title=VoiceMemo
+Icon=/home/USERNAME/.local/share/icons/hicolor/128x128/apps/mic128.png
+Terminal=true
+Type=Application
+Categories=Application
+Actions=new-note;new-clip;
+
+[Desktop Action new-note]
+Name=New Joplin Note
+Exec=gnome-terminal --window-with-profile=YOURPROFILENAME --hide-menubar --geometry=80x10+180+850 --title=NewNote -- vm
+
+[Desktop Action new-clip]
+Name=Record To Clipboard
+Exec=gnome-terminal --window-with-profile=YOURPROFILENAME --hide-menubar --geometry=80x10+180+850 --title=NewClip -- vm c
