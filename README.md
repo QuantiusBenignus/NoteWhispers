@@ -64,7 +64,8 @@ If you are using the GNOME integration (recommended), don't forget to:
 * Find "Whispers" in your Activities and click "Add to Favorites" to pin it to the dock
 * Create a new profile in gnome-terminal and edit it to suit your taste. Use its name in the .desktop file
 
-##### Code:
+##### Partial Code (full script in vm):
+
 ```bash
 #!/usr/bin/zsh
 # Should work also for users of bash, replace the above shebang with the path to 'bash'
@@ -144,81 +145,7 @@ JOPLIND=$HOME'/.config/joplin-desktop/resources'  #of course you can choose anot
 NOTEBOOK_ID="f5192ca16b0a2f551bdde"   # In my case the notebook is named VoiceMemos
 AUTH_TOKEN="cd79de696edf3b6a0b39f78ad43f3f22c77f586827176fd66f4750ac07446af0f772e06b5827928fe1aeb6409b4bde28e81880d9549b9569"
 
-# Clipboard flag, when set the output goes to the clipboard instead of creating a new note:
-unset clip
-notopt=0
-# Clumsy argument parser, the default is to use the 'tiny' model for speed and create a new note in Joplin:
-model="$TEMPD/ggml-tiny.en.bin"
-case $1 in
-	b) model="$TEMPD/ggml-base.en.bin"   ;;
-	bc|cb)   
-     model="$TEMPD/ggml-base.en.bin"
-     clip="1" 
-           ;;
-	c) clip="1"                          ;;
-	h|h|help|--help)
-     show_help
-           ;;
-	*) notopt="$#"                       ;;
-esac
-
-# You must have moved the model files (e.g. ggml-tiny.en.bin, see case parser above) to the tmpfs TEMPD in memory:
-# This can be done once per session using your .zshr (or .bashrc) file by placing something like this in it:
-# ([ -f /dev/shm/ggml-tiny.en.bin ] || cp /path/to/your/local/whisper.cpp/models/ggml* /dev/shm/)
-[[ -r $model ]] || { echo "Model file not found or not readable!" ; exit 1 ; }
-
-#[ -v $ramf ] || ramf="$(mktemp -p /dev/shm/ vmXXXX)"
-# Hardcoded temp wav file to store the voice memo (gets overwritten in RAM):
-ramf="$TEMPD/vmfile"
-# A unrecognized 1st arg or a 2nd argument will be treated as a filename and sox will try to convert to a wav file suitable for transcription:
-if [[ $notopt -gt 0 ]] && [[ -f $1 ]]; then 
-   echo -e '>>>>>>>>>>>>>>>>\n Loading audio from file...\n>>>>>>>>>>>>>>>\n'
-# Here we are tasking sox with error handling:
-   sox $1 -t wav $ramf channels 1 rate 16k norm  
-elif [[ $# -gt 1 ]] && [[ -f $2 ]]; then
-# Same here, sox has the right to complain:
-   echo -e '>>>>>>>>>>>>>>>>\n Loading audio from file...\n>>>>>>>>>>>>>>>\n'
-   sox $2 -t wav $ramf channels 1 rate 16k norm
-elif [[ $# -gt 1 ]] || [[ $notopt -gt 0 ]]; then
-   echo -e '>>>>>>>>>>>>>>>>\n Invalid Arguments!!!\n>>>>>>>>>>>>>>>\n'
-   show_help
-else
-# sox typically requires user input (CTRL-C) to stop recording from the microphone, this prevents the whole script from "overreacting":
-   trap "echo -e '>>>>>>>>>>>>>>>>\n Done recording\n>>>>>>>>>>>>>>>\n'" SIGINT
-# recording in wav format at 16k rate, the only currently accepted by whisper.cpp:
-# Attempts to stop on silence of 2s with threshold of 6%, if in doubt press CTRL-C: 
-   rec -t wav $ramf rate 16k silence 1 0.1 3% 1 2.0 6%
-fi
- 
-echo -e '>>>>>>>>>>>>>>>>\n Now transcribing...\n>>>>>>>>>>>>>>>\n'
-# transcribe is a symbolic link (somewhere in your path) to the compiled "main" executable in the whisper.cpp directory.
-# For example: in your ~/bin> create it with `ln -s /full/path/to/whisper.cpp/main $HOME/bin/transcribe`
-# The transcribed text is stored in a file (-otxt), in this case /dev/shm/vmfile.txt 
-transcribe -nt -m $model -f $ramf -otxt
-
-# I prefer to add a timestamp for time tracking of my notes:
-noted="$(date +%Y%m%d-%H%M%S)"
- 
-# If clipboard flag is set, we dump everything in the clipboard (make sure xsel is installed, e.g. apt install xsel) and exit:
-[[ $clip ]] && { echo $noted': ' | cat - $ramf.txt | xsel -bi && echo -e ">>>>>>>>>>>>>>>\n Copied to clipboard!\n>>>>>>>>>>>>>>>\n" ; exit 0 ; }
-
-# Otherwise we will use the Joplin data API:
-# Let's prepare a JSON payload (in a temp file in memory) to pass to curl: 
-echo -e '{ "title": "'$noted'", "parent_id":"'$NOTEBOOK_ID'", "body": "## '$noted'  \\n---\\n>' > $TEMPD/vmjson 
-# In my case parent_id is the Joplin id of a notebook named VoiceMemos  
-cat $ramf.txt >> $TEMPD/vmjson
-echo -e '\\n\\n "}' >> $TEMPD/vmjson
-
-# Let's ping the server to see if the REST API is available (if not, store the json payload for later):
-[[ $(curl http://localhost:41184/ping) != 'JoplinClipperServer' ]] && { cp $TEMPD/vmjson $JOPLIND/$noted.json && 
-echo -e "\nIt seems that Joplin is not runnig! \nMemo saved for later in "$JOPLIND/$noted.json; exit 0 ; } 
-
-# We contact the Joplin REST API with curl using the prepared JSON payload in the file "vmjson":
-curl -d @$TEMPD/vmjson -o $TEMPD/curlout "http://localhost:41184/notes?token="$AUTH_TOKEN
-echo -e '>>>>>>>>>>>>>>>>\n New note created!\n>>>>>>>>>>>>>>>\n'
-# You should find the newly created note (with the timestamp for a title) in the notebook of your choice. 
-
-
+------END of Code Snippet  (download vm for full code)
 ```
 
 ##### Other environment variables
