@@ -1,0 +1,15 @@
+# ignore ALL .log files
+*.log
+
+# ignore ALL files in directory named temp
+.temp/
+
+*.o
+.cache/
+.vs/
+.vscode/
+
+build/
+build-debug/
+build-release/
+sync.sh
