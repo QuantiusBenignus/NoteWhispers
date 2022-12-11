@@ -142,11 +142,23 @@ cat $ramf.txt >> $TEMPD/vmjson
 echo -e '\\n\\n "}' >> $TEMPD/vmjson
 
 # Let's ping the server to see if the REST API is available (if not, store the json payload for later):
-[[ $(curl http://localhost:41184/ping) != 'JoplinClipperServer' ]] && { cp $TEMPD/vmjson $JOPLIND/$noted.json && 
-echo -e "\nIt seems that Joplin is not runnig! \nMemo saved for later in "$JOPLIND/$noted.json; exit 0 ; } 
+[[ $(curl http://localhost:41184/ping) != 'JoplinClipperServer' ]] && { cp $TEMPD/vmjson $JOPLIND/$noted'uncollected.json' && 
+echo -e "\nIt seems that Joplin is not runnig! \nMemo saved for later in "$JOPLIND/$noted'uncollected.json'; exit 0 ; } 
 
 # We contact the Joplin REST API with curl using the prepared JSON payload in the file "vmjson":
 curl -d @$TEMPD/vmjson -o $TEMPD/curlout "http://localhost:41184/notes?token="$AUTH_TOKEN
 echo -e '>>>>>>>>>>>>>>>>\n New note created!\n>>>>>>>>>>>>>>>\n'
 # You should find the newly created note (with the timestamp for a title) in the notebook of your choice. 
+
+# Since Joplin is obviously up and running ... 
+# Let's check for uncollected notes (from when Joplin was not running) and take them home:
+for jsonf in $JOPLIND/*'uncollected.json'; do
+fil="${jsonf##*/}" 
+echo -e "\n----- Collecting note from $fil ------\n"
+curl -d @$jsonf -o $TEMPD/curlout "http://localhost:41184/notes?token="$AUTH_TOKEN
+#rm $jsonf  - no, let's keep them just in case
+mv -i "$jsonf" "${jsonf/uncollected.json/.json}" 
+echo -e "\n----- Collected note. Backup kept as ${fil/uncollected.json/.json} ------"
+done
+#Done
 
