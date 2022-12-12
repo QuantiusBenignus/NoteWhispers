@@ -15,7 +15,8 @@ This Linux command-line utility (with optional GNOME integration) is named **vm*
 As a CLI script relying on established Linux tools under the hood (*sox*, *curl*), **vm**'s feature set is exposed by a few command line arguments, but at its core it records a voice memo from the default audio input channel (microphone) or uses an audio file as the input,  transcribes it into text using [whisper.cpp](https://github.com/ggerganov/whisper.cpp) (a C/C++ port of Open AI's Whisper) and either: 
    - **sends it to the clipboard**, or
    -  **creates a new note in a running instance of the Joplin note-taking app**  using curl to access Joplin's data API (see details below)
-   -   if Joplin is not running, **stores the transcription in a file for later access**. 
+   -   if Joplin is not running, **stores the transcription in a file for later collection**.
+   -   On a next note creation, if Joplin is up, it also **collects the temporarily stored note(s)**    
 
 ##### SYNOPSIS:
 `vm [b|c|bc|cb|-h|help|--help|filename] ... [filename]`
@@ -53,6 +54,7 @@ For the aforementioned reasons, the script also expects to find the the ASR mode
 `([ -f /dev/shm/ggml-tiny.en.bin ] || cp /path/to/your/local/whisper.cpp/models/ggml* /dev/shm/)`
 
 ##### "Installation"
+(Assuming whisper.cpp is available and the main executable compiled; 'make' in the cloned repo)
 Place the main script **vm** somewhere in your PATH. Also create a symbolic link (in your PATH) to the compiled "main" executable in the whisper.cpp directory. For example, create it in your $HOME/bin> with `ln -s /full/path/to/whisper.cpp/main $HOME/bin/transcribe`. 
 
 If you are using the GNOME integration (recommended), don't forget to:
@@ -63,7 +65,7 @@ If you are using the GNOME integration (recommended), don't forget to:
 
 ##### Other environment variables
 
-If Joplin is not running while the voice memo is being captured and transcribed, the script stores transcribed text in the Joplin configuration directory for later processing (you can change this location as needed). This is in the code: `JOPLIND=$HOME'/.config/joplin-desktop/resources' `
+If Joplin is not running while the voice memo is being captured and transcribed, the script stores transcribed text in the Joplin configuration directory for later processing by this same code (you can change this location as needed). This is in the code: `JOPLIND=$HOME'/.config/joplin-desktop/resources' `
 
 The next two variables are for the Joplin data API. 
 The first parameter is the id of the Joplin notebook where the new note will be created.
@@ -208,4 +210,3 @@ As such, this command-line utility, combined with the strength of the now open-s
 * The **sox** developers (for the venerable "Swiss Army knife of sound processing tools")
 * The creators and maintainers of old and new utilities such as **xsel, xclip**, the heaviweight **ffmpeg** and others that make the Linux environment (CLI and GUI) such a powerful paradigm.
 
-2022/12/05 
