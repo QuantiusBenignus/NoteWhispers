@@ -53,9 +53,11 @@ and then restart your Linux computer.
 For the aforementioned reasons, the script also expects to find the the ASR model files needed by whisper.cpp in the same location (/dev/shm). These are large files, that can be transferred to this location at the start of a terminal session (or at system startup). This can be done using your .zshrc (or .bashrc) file by placing something like this in it: 
 `([ -f /dev/shm/ggml-tiny.en.bin ] || cp /path/to/your/local/whisper.cpp/models/ggml* /dev/shm/)`
 
-##### "Installation"
-(Assuming whisper.cpp is available and the main executable compiled; 'make' in the cloned repo)
-Place the main script **vm** somewhere in your PATH. Also create a symbolic link (in your PATH) to the compiled "main" executable in the whisper.cpp directory. For example, create it in your $HOME/bin> with `ln -s /full/path/to/whisper.cpp/main $HOME/bin/transcribe`. 
+#### "Installation"
+(Assuming whisper.cpp is available and the "main" executable compiled; 'make' in the cloned whisper.cpp repo)
+* Place the main script **vm** somewhere in your PATH. 
+* Also create a symbolic link (in your PATH) to the compiled "main" executable in the whisper.cpp directory. For example, create it in your $HOME/bin> with `ln -s /full/path/to/whisper.cpp/main $HOME/bin/transcribe`.
+* Edit your personal NOTEBOOK_ID and AUTH_TOKEN variables in the code using the values from your Joplin app.  
 
 If you are using the GNOME integration (recommended), don't forget to:
 * Place `Whispers.desktop` in `$HOME/.local/share/applications/
