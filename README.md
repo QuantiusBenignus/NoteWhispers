@@ -18,7 +18,7 @@ As a CLI script relying on established Linux tools under the hood (*sox*, *curl*
    -   if Joplin is not running, **stores the transcription in a file for later collection**.
    -   On a next note creation, if Joplin is up, it also **collects the temporarily stored note(s)**    
 
-##### SYNOPSIS:
+#### SYNOPSIS:
 `vm [b|c|bc|cb|-h|help|--help|filename] ... [filename]`
 
  The first argument chooses one of the special-format whisper.cpp model files to use for inference.
@@ -54,10 +54,10 @@ For the aforementioned reasons, the script also expects to find the the ASR mode
 `([ -f /dev/shm/ggml-tiny.en.bin ] || cp /path/to/your/local/whisper.cpp/models/ggml* /dev/shm/)`
 
 #### "Installation"
-(Assuming whisper.cpp is available and the "main" executable compiled; 'make' in the cloned whisper.cpp repo)
+(Assuming whisper.cpp is available and the "main" executable compiled; 'make' in the cloned whisper.cpp repo. See Prerequisites section)
 * Place the main script **vm** somewhere in your PATH. 
 * Also create a symbolic link (in your PATH) to the compiled "main" executable in the whisper.cpp directory. For example, create it in your $HOME/bin> with `ln -s /full/path/to/whisper.cpp/main $HOME/bin/transcribe`.
-* Edit your personal NOTEBOOK_ID and AUTH_TOKEN variables in the code using the values from your Joplin app.  
+* Edit your personal NOTEBOOK_ID and AUTH_TOKEN variables in the code using the values from your Joplin app (see next section).  
 
 If you are using the GNOME integration (recommended), don't forget to:
 * Place `Whispers.desktop` in `$HOME/.local/share/applications/
@@ -65,7 +65,7 @@ If you are using the GNOME integration (recommended), don't forget to:
 * Find "Whispers" in your Activities and click "Add to Favorites" to pin it to the dock
 * Create a new profile in gnome-terminal and edit it to suit your taste. Use its name in the .desktop file
 
-##### Other environment variables
+#### Other environment variables
 
 If Joplin is not running while the voice memo is being captured and transcribed, the script stores transcribed text in the Joplin configuration directory for later processing by this same code (you can change this location as needed). This is in the code: `JOPLIND=$HOME'/.config/joplin-desktop/resources' `
 
