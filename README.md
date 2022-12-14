@@ -205,7 +205,7 @@ If using X11 (instead of the restrictive Wayland), one can use the `--geometry` 
 Even with the default "tiny" model, the accuracy  (English language tested) is impressive and on a faster computer (not mine) it takes less than a second to transcribe a 30s audio clip with essentially no errors.
 As such, this command-line utility, combined with the strength of the now open-sourced [Whisper](https://github.com/openai/whisper) from Open AI (its [whisper.cpp](https://github.com/ggerganov/whisper.cpp) port, to be more precise), proves quite useful and practical, especially in the context of a note-taking app such as the versatile, customizable [Joplin](https://joplinapp.org/). Enjoy!
 
-#### Credits
+### Credits
 * Open AI (for [Whisper](https://github.com/openai/whisper))
 * Georgi Gerganov and community ( for Whisper's C/C++ port [whisper.cpp](https://github.com/ggerganov/whisper.cpp))
 * Laurent Cozic and community (for the [Joplin](https://github.com/laurent22/joplin) note-taking app)
