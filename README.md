@@ -1,8 +1,8 @@
 
 
-# Voice Memos to Joplin Text Notes
-#### *Voice memos recorded from the microphone, transcribed offline to text and sent to the clipboard or converted to Joplin notes*
-#### *Can also transcribe from an existing audio file and send text to clipboard or convert to Joplin notes*
+# *Voice Memos to Joplin Text Notes*
+##### *Voice memos recorded from the microphone, transcribed offline to text and sent to the clipboard or converted to Joplin notes*
+##### *Can also transcribe from an existing audio file and send text to clipboard or convert to Joplin notes*
 ---
 
 > ![vmNewNote.png](vmNewNote.png)
@@ -41,7 +41,7 @@ As a CLI script relying on established Linux tools under the hood (*sox*, *curl*
 * Please, note that this command line utility for **Linux** is written for *zsh* but has been coded in a way that should allow it to run unmodified for users of *bash*. 
 > *DISCLAIMER: Setting up the environment for this to work requires a bit of attention and, quite likely for the novice user, reading about the Linux internals and making informed choices. Some of the proposed actions, if implemented, will alter how your system works internally (e.g. systemwide temporary file storage and memory management). The author neither takes credit nor assumes any responsibility for any outcome that may or may not result from interacting with the contents of this document.*
 
-#### Preparing the Environment
+#### PREPARING THE ENVIRONMENT
 ##### Temporary directory and files
 *(NB. Everything in this section is based on the author's choice and opinion and may not fit the taste or the particular situation of everyone; please, adjust the script as you like. )*
 
@@ -53,10 +53,10 @@ and then restart your Linux computer.
 For the aforementioned reasons, the script also expects to find the the ASR model files needed by whisper.cpp in the same location (/dev/shm). These are large files, that can be transferred to this location at the start of a terminal session (or at system startup). This can be done using your .zshrc (or .bashrc) file by placing something like this in it: 
 `([ -f /dev/shm/ggml-tiny.en.bin ] || cp /path/to/your/local/whisper.cpp/models/ggml* /dev/shm/)`
 
-#### "Installation"
+#### "INSTALLATION"
 (Assuming whisper.cpp is available and the "main" executable compiled; 'make' in the cloned whisper.cpp repo. See Prerequisites section)
 * Place the main script **vm** somewhere in your PATH. 
-* Also create a symbolic link (in your PATH) to the compiled "main" executable in the whisper.cpp directory. For example, create it in your $HOME/bin> with `ln -s /full/path/to/whisper.cpp/main $HOME/bin/transcribe`.
+* Also create a symbolic link (the code expects 'transcribe' in your PATH) to the compiled "main" executable in the whisper.cpp directory. For example, create it in your $HOME/bin> with `ln -s /full/path/to/whisper.cpp/main $HOME/bin/transcribe`.
 * Edit your personal NOTEBOOK_ID and AUTH_TOKEN variables in the code using the values from your Joplin app (see next section).  
 
 If you are using the GNOME integration (recommended), don't forget to:
@@ -66,7 +66,7 @@ If you are using the GNOME integration (recommended), don't forget to:
 * Find "Whispers" in your Activities and click "Add to Favorites" to pin it to the dock
 * Create a new profile in gnome-terminal and edit it to suit your taste. Use its name in the .desktop file
 
-#### Other environment variables
+##### Other environment variables
 
 If Joplin is not running while the voice memo is being captured and transcribed, the script stores transcribed text in the Joplin configuration directory for later processing by this same code (you can change this location as needed). This is in the code: `JOPLIND=$HOME'/.config/joplin-desktop/resources' `
 
@@ -171,7 +171,7 @@ The script will then format the data in the appropriate format (JSON for note cr
 
 To make interaction with this CLI utility more convenient, one can create a GNOME desktop entry (if using GNOME) with a custom profile for the terminal window (small window, custom color, transparent, etc., see `gnome-terminal` documentation on creating named profiles ) so that the window will be visible on top a maximized Joplin window. 
 One can also choose whether to keep the terminal window open, or close it after the transcription (see the gnome-terminal settings for your custom profile - YOURPROFILENAME in the code below.)
-Sample `Whispers.desktop` (place in your ` $HOME/.local/share/applications/`):
+Sample `Whispers.desktop` (Replace USERNAME and YOURPROFILENAME and place in your ` $HOME/.local/share/applications/`):
 ```
 [Desktop Entry]
 Name=Whispers
@@ -205,7 +205,7 @@ If using X11 (instead of the restrictive Wayland), one can use the `--geometry` 
 Even with the default "tiny" model, the accuracy  (English language tested) is impressive and on a faster computer (not mine) it takes less than a second to transcribe a 30s audio clip with essentially no errors.
 As such, this command-line utility, combined with the strength of the now open-sourced [Whisper](https://github.com/openai/whisper) from Open AI (its [whisper.cpp](https://github.com/ggerganov/whisper.cpp) port, to be more precise), proves quite useful and practical, especially in the context of a note-taking app such as the versatile, customizable [Joplin](https://joplinapp.org/). Enjoy!
 
-### Credits
+#### Credits
 * Open AI (for [Whisper](https://github.com/openai/whisper))
 * Georgi Gerganov and community ( for Whisper's C/C++ port [whisper.cpp](https://github.com/ggerganov/whisper.cpp))
 * Laurent Cozic and community (for the [Joplin](https://github.com/laurent22/joplin) note-taking app)
