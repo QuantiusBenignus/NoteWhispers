@@ -61,6 +61,7 @@ For the aforementioned reasons, the script also expects to find the the ASR mode
 
 If you are using the GNOME integration (recommended), don't forget to:
 * Place `Whispers.desktop` in `$HOME/.local/share/applications/
+* Replace USERNAME and YOURPROFILENAME in the file with your values.
 * Move the icon referenced in the .desktop file to the specified directory in $HOME/.local/...
 * Find "Whispers" in your Activities and click "Add to Favorites" to pin it to the dock
 * Create a new profile in gnome-terminal and edit it to suit your taste. Use its name in the .desktop file
