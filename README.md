@@ -5,6 +5,7 @@
 ##### *Can also transcribe from an existing audio file and send text to clipboard or convert to Joplin notes*
 ---
 
+
 > ![vmNewNote.png](vmNewNote.png)
 
 #### DESCRIPTION:  
