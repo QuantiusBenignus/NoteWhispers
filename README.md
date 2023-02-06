@@ -1,8 +1,9 @@
 
 
 # *Voice Memos to Joplin Text Notes*
-##### *Voice memos recorded from the microphone, transcribed offline to text and sent to the clipboard or converted to Joplin notes*
-##### *Can also transcribe from an existing audio file and send text to clipboard or convert to Joplin notes*
+##### *Voice memos recorded from the microphone, transcribed offline to text and sent to the clipboard or converted to Joplin notes*. *Can also transcribe from an existing audio file and send text to clipboard or convert to Joplin notes*
+
+*This repository, while still providing some utility (hopefully) was a proof of concept and is now frozen and superceded by [Spoken](https://github.com/QuantiusBenignus/Spoken), which adds support for Joplin To-Dos with automatic alarms directly from the microphone, as well as batch audio file processing. More functions result in more complexity, leading to more bugs, so consider NoteWhispers as the simpler, less buggy fallback option :-) *
 ---
 
 
