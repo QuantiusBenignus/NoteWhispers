@@ -4,7 +4,7 @@
 ##### *Voice memos recorded from the microphone, transcribed offline to text and sent to the clipboard or converted to Joplin notes*. *Can also transcribe from an existing audio file and send text to clipboard or convert to Joplin notes*
 
 ---
--- This repository, while (hopefully) still providing some utility, was a proof of concept and is now superceded by [Spoken](https://github.com/QuantiusBenignus/Spoken), which adds support for Joplin To-Dos (in a sepparate, standallone executable) with automatic alarms directly from the microphone, as well as batch audio file processing. --
+#### *This repository, while (hopefully) still providing some utility, was a proof of concept and is now superceded by [Spoken](https://github.com/QuantiusBenignus/Spoken), which improves on the same functionality but also adds support for Joplin To-Dos (in a sepparate, standallone executable). For automatic alarms directly from the microphone, as well as batch audio file processing, please use the utilities in Spoken.*
 
 > ![vmNewNote.png](vmNewNote.png)
 
