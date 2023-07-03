@@ -109,7 +109,7 @@ Exec=gnome-terminal --window-with-profile=YOURPROFILENAME --hide-menubar --geome
 
 [Desktop Action new-clip]
 Name=Record To Clipboard
-Exec=gnome-terminal --window-with-profile=YOURPROFILENAME --hide-menubar --geometry=80x10+180+850 --title=NewClip -- vm c
+Exec=gnome-terminal --window-with-profile=YOURPROFILENAME --hide-menubar --geometry=80x10+180+850 --title=NewClip -- vm -c
 
 ```
 With the above `gnome-terminal` desktop entry ( please, adjust profile and username), the  utility will be accessible from the system dock, after you add it to your "Favorites" (right mouse click brings up the shown context menu):
