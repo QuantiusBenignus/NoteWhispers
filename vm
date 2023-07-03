@@ -135,8 +135,9 @@ do
 done
 
 # You must have moved the model files (e.g. ggml-tiny.en.bin, see case parser above) to the tmpfs TEMPD in memory:
-# This can be done once per session using your .zshr (or .bashrc) file by placing something like this in it:
+# This can be done once per shell session using your .zshr (or .bashrc) file by placing something like this in it:
 # ([ -f /dev/shm/ggml-tiny.en.bin ] || cp /path/to/your/local/whisper.cpp/models/ggml* /dev/shm/)
+# If you prefer to set the above on login (even before opening a terminal) place it in ypour .profile file.
 [[ -r $model ]] || { echo "Model file not found or not readable!" ; exit 1 ; }
 
 for af in ${audio_files[@]}; do
@@ -170,7 +171,7 @@ echo -e '>>>>>>>>>>>>>>>> Now transcribing... >>>>>>>>>>>>>>>\n'
 # transcribe is a symbolic link (somewhere in your path) to the compiled "main" executable in the whisper.cpp directory.
 # For example: in your ~/bin> create it with `ln -s /full/path/to/whisper.cpp/main $HOME/bin/transcribe`
 # The transcribed text is stored in a file (-otxt), in this case /dev/shm/vmfile.txt 
-transcribe -t $NTHR -pc -nt -l bg -m $model -f $wf -otxt 2>/dev/null
+transcribe -pc -nt -t $NTHR -m $model -f $wf -otxt 2>/dev/null
 
 # For tracking the time of creation of notes:
 noted="$(date +%Y-%m-%dT%T)" #ISO-8601-ish.  
