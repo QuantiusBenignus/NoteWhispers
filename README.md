@@ -4,7 +4,7 @@
 ##### *Voice memos recorded from the microphone, transcribed offline to text and sent to the clipboard or converted to Joplin notes*. *Can also transcribe from an existing audio file and send text to clipboard or convert to Joplin notes*
 
 ---
-#### *This repository, while (hopefully) still providing some utility, was a proof of concept and is now superceded by [Spoken](https://github.com/QuantiusBenignus/Spoken), which improves on the same functionality but also adds support for Joplin To-Dos (in a sepparate, standallone executable). For automatic alarms directly from the microphone, as well as batch audio file processing, please use the utilities in Spoken.*
+#### *This repository, while (hopefully) still providing some utility, was a proof of concept and is now superceded by [Spoken](https://github.com/QuantiusBenignus/Spoken), which improves on the same functionality but also adds support for Joplin To-Dos (in a sepparate, standallone executable). For to-dos with automatic alarms directly from the microphone, please use the utilities in Spoken.*
 
 > ![vmNewNote.png](vmNewNote.png)
 
@@ -24,11 +24,10 @@ As a CLI script relying on established Linux tools under the hood (*sox*, *curl*
 
  The first argument chooses one of the special-format whisper.cpp model files to use for inference.
    - `vm` the default is to use the "tiny" model file and create a note in Joplin 
-   - `vm b` will transcribe to a Joplin note using the larger (more accurate but slower) "base" model
-   - `vm c`  will transcribe with the default "tiny" model file but with output to the clipboard
-   - `vm bc` or `vm cb` uses the "base" model file with output to the clipboard*
-   -  any other 1st argument forces sox to treat it as an audio file and to try to convert it 
-   - `vm x XYZ` the existence of a 2nd argument  forces sox to treat it as an audio input file
+   - `vm -b` will transcribe to a Joplin note using the larger (more accurate but slower) "base" model
+   - `vm -c`  will transcribe with the default "tiny" model file but with output to the clipboard
+   - `vm -bc` or `vm -cb` uses the "base" model file with output to the clipboard*
+   -  any other argument(s) forces sox to treat it as an audio file and to try to convert it 
    - `vm h|help|-h|--help` will print help instructions to the standard output
       * *(tested on Ubuntu 22.04 LTS under Gnome version 42.5, with the English language models )*
 
@@ -55,6 +54,7 @@ For the aforementioned reasons, the script also expects to find the the ASR mode
 ```
 ([ -f /dev/shm/ggml-tiny.en.bin ] || cp /path/to/your/local/whisper.cpp/models/ggml* /dev/shm/)
 ```
+This can be done at login (even before opening a terminal) by placing the above line in your flavor of .profile file.
 
 #### "INSTALLATION"
 (Assuming whisper.cpp is available and the "main" executable compiled; 'make' in the cloned whisper.cpp repo. See Prerequisites section)
