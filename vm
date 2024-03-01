@@ -144,8 +144,10 @@ for af in ${audio_files[@]}; do
 if [[ -r $af ]]; then 
    echo -e '>>>>>>>>>> Loading audio from file...'$af' >>>>>>>>>>\n'
 # Here we are tasking sox with error handling:
-   sox -q $af -t wav $af.wav channels 1 rate 16k norm
-   wavs=("${wavs[@]}" "$TEMPD/$af.wav")  
+   fname=$(basename "$af")
+   fbname="$TEMPD/${fname%.*}.wav"
+   sox -q $af -t wav $fbname channels 1 rate 16k norm
+   wavs=("${wavs[@]}" "$fbname")  
 else
    echo -e '>>>>>>>>>>>>>>>>\n File '$af' cannot be read !!!\n>>>>>>>>>>>>>>>\n'
    show_help
